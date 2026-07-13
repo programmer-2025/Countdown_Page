@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <link rel="stylesheet" href="./style/main.css">
+
+    <title>ホームページ</title>
+    <style>
+        body {
+            margin: 0px;
+            background-color: aliceblue;
+        }
+    </style>
+    <script>
+        const TGS_DAY = new Date("2026-09-17T00:00:00+09:00");
+
+        function updateCountdown() {
+            setInterval(() => {
+                const now = new Date();
+                const timeDiff = TGS_DAY - now;
+
+                const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((timeDiff / (1000 * 60 * 60)) % 24);
+                const minutes = Math.floor((timeDiff / (1000 * 60)) % 60);
+                const seconds = Math.floor((timeDiff / 1000) % 60);
+
+                document.getElementById("countdown").innerHTML =
+                    days + "日 " + hours + "時間 " + minutes + "分 " + seconds + "秒";
+            }, 1);
+        }
+
+        updateCountdown();
+    </script>
+</head>
+<body>
+    <nav class="menu_bar">
+        <ul class="menu_list">
+            <li class="menu_item"><a href="index.html">トップ</a></li>
+        </ul>
+    </nav>
+
+    <div class="box">
+        <h1>TGSまであと</h1>
+        <div id="countdown" style="font-size: 24px; font-weight: bold;">a</div>
+    </div>
+</body>
+</html>
