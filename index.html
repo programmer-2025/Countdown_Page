@@ -12,21 +12,27 @@
         }
     </style>
     <script>
+        const GAME_DAY = new Date("2026-08-31T00:00:00+09:00");
         const TGS_DAY = new Date("2026-09-17T00:00:00+09:00");
+        
 
         function updateCountdown() {
             setInterval(() => {
+                document.getElementById("tgccountdown").innerHTML = textDate(TGS_DAY);
+                document.getElementById("gamecountdown").innerHTML = textDate(GAME_DAY);
+            }, 1);
+        }
+
+        function textDate(date_) {
                 const now = new Date();
-                const timeDiff = TGS_DAY - now;
+                const timeDiff = date_ - now;
 
                 const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
                 const hours = Math.floor((timeDiff / (1000 * 60 * 60)) % 24);
                 const minutes = Math.floor((timeDiff / (1000 * 60)) % 60);
                 const seconds = Math.floor((timeDiff / 1000) % 60);
 
-                document.getElementById("countdown").innerHTML =
-                    days + "日 " + hours + "時間 " + minutes + "分 " + seconds + "秒";
-            }, 1);
+                return days + "日 " + hours + "時間 " + minutes + "分 " + seconds + "秒";
         }
 
         updateCountdown();
@@ -40,8 +46,13 @@
     </nav>
 
     <div class="box">
+        <h1>次回の授業まで</h1>
+        <div id="gamecountdown" style="font-size: 24px; font-weight: bold;"></div>
+    </div>
+
+    <div class="box">
         <h1>TGSまであと</h1>
-        <div id="countdown" style="font-size: 24px; font-weight: bold;">a</div>
+        <div id="tgccountdown" style="font-size: 24px; font-weight: bold;"></div>
     </div>
 
     <div class="box">
